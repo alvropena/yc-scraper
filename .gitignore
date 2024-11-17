@@ -10,3 +10,4 @@ geckodriver.log
 # Output files
 output.jl
 start_urls.txt
+companies.json

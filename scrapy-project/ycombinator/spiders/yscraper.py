@@ -4,7 +4,7 @@ import scrapy
 
 def make_start_urls_list():
     """Returns a list with the start urls."""
-    with open('scrapy-project/ycombinator/start_urls.txt', 'r') as f:
+    with open('ycombinator/start_urls.txt', 'r') as f:
         return eval(f.read())
 
 
@@ -15,12 +15,8 @@ class YCombinator(scrapy.Spider):
 
     def parse(self, response):
         rc = response.css
-        # get the JSON object inside the <script> tag
-        # cl = 'script.js-react-on-rails-component'
-        # st = rc(f'{cl}[data-component-name="CompaniesShowPage"]::text').get()
         st = response.css('[data-page]::attr(data-page)').get()
-        if 1 is not None:
-            # load the JSON object and set the variable for the 'Company' data
+        if st is not None:
             jo = json.loads(st)['props']
             jc = jo['company']
             yield {

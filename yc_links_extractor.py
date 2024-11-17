@@ -12,6 +12,7 @@ def make_driver():
     """Creates headless Firefox WebDriver instance."""
     firefox_options = Options()
     firefox_options.add_argument('-headless')
+    firefox_options.binary_location = "/Applications/Firefox.app/Contents/MacOS/firefox"
     return Firefox(options=firefox_options)
 
 
