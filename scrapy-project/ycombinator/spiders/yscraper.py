@@ -31,7 +31,16 @@ class YCombinator(scrapy.Spider):
                 'country': jc['country'],
                 'year_founded': jc['year_founded'],
                 'num_founders': len(jc['founders']),
-                'founders_names': [f['full_name'] for f in jc['founders']],
+                'founders': [
+                    {
+                        'name': f['full_name'],
+                        'title': f['title'],
+                        'linkedin_url': f.get('linkedin_url'),
+                        'twitter_url': f.get('twitter_url'),
+                        'github_url': f.get('github_url'),
+                    }
+                    for f in jc['founders']
+                ],
                 'team_size': jc['team_size'],
                 'website': jc['website'],
                 'cb_url': jc['cb_url'],
